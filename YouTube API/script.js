@@ -24,34 +24,29 @@ app.all('*', function(req, res, next) {
 });
 */
 
-var SkyscannerPost;
-SkyscannerPost = "http://partners.api.skyscanner.net/apiservices/pricing/v1.0";
-var SkyscannerGet;
-SkyscannerGet="http://partners.api.skyscanner.net/apiservices/browsedates/v1.0/GB/GBP/en-GB/LON/JFK/anytime/anytime?apiKey=am296617236898565695386145032921";
 
-
-var CodeCademyXml;
+//var CodeCademyXml;
 var CodeCademyXmlLocal;
 
-//CodeCademyXml="https://www.codecademy.com/files/samples/javascript_learn_apis.xml";
-CodeCademyXml="http://partners.api.skyscanner.net/apiservices/browsedates/v1.0/GB/GBP/en-GB/LON/JFK/anytime/anytime?apiKey=prtl6749387986743898559646983194";
+CodeCademyXml="https://www.codecademy.com/files/samples/javascript_learn_apis.xml";
+//CodeCademyXml="http://partners.api.skyscanner.net/apiservices/browsedates/v1.0/GB/GBP/en-GB/LON/JFK/anytime/anytime?apiKey=prtl6749387986743898559646983194";
 
 CodeCademyXmlLocal="javascript_learn_apis.xml";
 
 var xhr = new XMLHttpRequest();
-//var xhrLocal = new XMLHttpRequest();
+var xhrLocal = new XMLHttpRequest();
 
 xhr.open("GET", CodeCademyXml, false);
-//xhrLocal.open("GET", CodeCademyXmlLocal, false);
+xhrLocal.open("GET", CodeCademyXmlLocal, false);
 
-//xhr.send();
-//xhrLocal.send();
+xhr.send();
+xhrLocal.send();
 
-console.log(xhr.status);
-console.log(xhr.statusText);
+//console.log(xhr.status);
+//console.log(xhr.statusText)l;
 
-//console.log(xhrLocal.status);
-//console.log(xhrLocal.statusText);
+console.log(xhrLocal.status);
+console.log(xhrLocal.statusText);
 
 xmlDocument = xhr.responseXML;
 console.log(xmlDocument);
@@ -59,7 +54,7 @@ console.log(xmlDocument);
 //console.log(xmlDocument.childNodes['0'].textContent);
 
 
-//xmlLocalDocument = xhrLocal.responseXML;
+xmlLocalDocument = xhrLocal.responseXML;
 //console.log(xmlLocalDocument.childNodes['0'].textContent);
 
 var apiKey = "am296617236898565695386145032921";
