@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="id01"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "mySkyscanner.txt";
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        myFunction(myArr);
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(arr) {
+    var out = "";
+    var outEtl="";
+    var maxNumber="";
+    var i;
+    
+    for(i = 0; i < arr.length; i++) {
+        out += Math.min(parseInt(arr[i].PricingOptions[0].Price)) +',';
+        outEtl ='[' +out+'99'+']';
+        maxNumber += Math.max(outEtl) ;  
+    }
+/*
+    for(i = 0; i < arr.length; i++) {
+        out += ' i='+ i + ';' +  arr[i].PricingOptions[0].Price   ;
+    }
+*/    
+    document.getElementById("id01").innerHTML = maxNumber;
+}
+</script>
+
+</body>
+</html>
+

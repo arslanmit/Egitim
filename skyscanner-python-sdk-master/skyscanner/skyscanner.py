@@ -23,7 +23,6 @@ language governing permissions and limitations under the License.
 import logging
 import sys
 import time
-
 import requests
 
 try:
@@ -67,13 +66,17 @@ class MissingParameter(KeyError):
 
     """Is thrown when expected request parameter is missing."""
     pass
-
-
+"""
+print(object)
+"""
 class Transport(object):
-
     """
     Parent class for initialization
     """
+    """
+    print("Transport(object)")
+    """
+
     API_HOST = 'http://partners.api.skyscanner.net'
     MARKET_SERVICE_URL = '{api_host}/apiservices/reference/v1.0/countries'\
         .format(api_host=API_HOST)
@@ -82,7 +85,7 @@ class Transport(object):
     LOCATION_AUTOSUGGEST_PARAMS = ('market', 'currency', 'locale')
     _SUPPORTED_FORMATS = ('json', 'xml')
 
-    def __init__(self, api_key, response_format='json'):
+    def __init__(self, api_key: object, response_format: object = 'json') -> object:
         """
         :param api_key - The API key to identify ourselves
         :param response_format - specify preferred format of the response,
@@ -107,10 +110,6 @@ class Transport(object):
 
         # TODO: Move these params to their own vertical if needed.
         polling_params = [
-            'locationschema',
-            'carrierschema',
-            'sorttype',
-            'sortorder',
             'originairports',
             'destinationairports',
             'stops',
@@ -132,7 +131,7 @@ class Transport(object):
 
         return additional_params
 
-    def get_result(self, errors=GRACEFUL, **params):
+    def get_result(self, errors: object = GRACEFUL, params: object) -> object:
         """
         Get all results, no filtering, etc. by creating and polling the
         session.
@@ -208,6 +207,7 @@ class Transport(object):
         url = "{url}/{market}".format(url=self.MARKET_SERVICE_URL,
                                       market=market)
         return self.make_request(url, headers=self._headers())
+
 
     def location_autosuggest(self, **params):
         """
@@ -397,6 +397,7 @@ class Transport(object):
 
         return parsed_resp
 
+
     @staticmethod
     def _construct_params(params, required_keys, opt_keys=None):
         """
@@ -418,15 +419,19 @@ class Transport(object):
             resp.content) if response_format == 'xml' else resp.json()
         return resp
 
-
+"""
+print(Transport)
+"""
 class Flights(Transport):
-
     """
     Flights Live Pricing
 
     Please see:
         http://business.skyscanner.net/portal/en-GB/
         Documentation/FlightsLivePricingList
+    """
+    """
+    print("Flights(Transport)")
     """
 
     PRICING_SESSION_URL = '{api_host}/apiservices/pricing/v1.0'.format(
@@ -459,9 +464,13 @@ class Flights(Transport):
                                      'location'],
                                  **params)
 
-
+"""
+print(Flights)
+"""
 class FlightsCache(Flights):
-
+    """
+    print("FlightsCache(Flights)")
+    """
     """
     Flights Browse Cache
 
@@ -555,8 +564,9 @@ class FlightsCache(Flights):
             headers=self._headers(),
             **params
         )
-
-
+"""
+print(FlightsCache)
+"""
 class CarHire(Transport):
 
     """
@@ -564,6 +574,9 @@ class CarHire(Transport):
     {API_HOST}/apiservices/carhire/liveprices/v2/{market}/{currency}/{locale}/
     {pickupplace}/{dropoffplace}/{pickupdatetime}/{dropoffdatetime}/{driverage}
     ?apiKey={apiKey}&userip={userip}
+    """
+    """
+    print("CarHire(Transport)")
     """
 
     PRICING_SESSION_URL = '{api_host}/apiservices/carhire/liveprices/v2'\
@@ -607,10 +620,11 @@ class CarHire(Transport):
         if len(websites) == 0:
             return False
         return all(not bool(w.get('in_progress')) for w in websites)
-
+"""
+print(CarHire)
+"""
 
 class Hotels(Transport):
-
     """
     Hotels Live prices
 
@@ -618,7 +632,9 @@ class Hotels(Transport):
     {entityid}/{checkindate}/{checkoutdate}/{guests}/{rooms}
     ?apiKey={apiKey}[&pageSize={pageSize}][&imageLimit={imageLimit}]
     """
-
+    """
+    print("Hotels(Transport)")
+    """
     PRICING_SESSION_URL = '{api_host}/apiservices/hotels/liveprices/v2'\
         .format(api_host=Transport.API_HOST)
     LOCATION_AUTOSUGGEST_URL = '{api_host}/apiservices/hotels/autosuggest/v2'\
@@ -648,3 +664,7 @@ class Hotels(Transport):
         )
 
         return "{url}{path}".format(url=self.API_HOST, path=poll_path)
+"""
+print(Hotels)
+print( )
+"""

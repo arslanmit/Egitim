@@ -24,7 +24,7 @@ app.all('*', function(req, res, next) {
 });
 */
 
-
+/*
 //var CodeCademyXml;
 var CodeCademyXmlLocal;
 
@@ -33,8 +33,8 @@ CodeCademyXml="https://www.codecademy.com/files/samples/javascript_learn_apis.xm
 
 CodeCademyXmlLocal="javascript_learn_apis.xml";
 
-var xhr = new XMLHttpRequest();
-var xhrLocal = new XMLHttpRequest();
+//var xhr         = new XMLHttpRequest();
+//var xhrLocal    = new XMLHttpRequest();
 
 xhr.open("GET", CodeCademyXml, false);
 xhrLocal.open("GET", CodeCademyXmlLocal, false);
