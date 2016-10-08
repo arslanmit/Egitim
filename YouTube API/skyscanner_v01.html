@@ -10,10 +10,11 @@ var url = "mySkyscanner.txt";
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        var myArr = JSON.parse(this.responseText);
+        var myArr = JSON.parse(this .responseText);
         myFunction(myArr);
     }
 };
+
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
@@ -21,19 +22,30 @@ function myFunction(arr) {
     var out = "";
     var outEtl="";
     var maxNumber="";
-    var i;
-    
+    var i=0;
+
+    out+='IST_VEN' +'<br>'+'<br>';
+    out+='IST_VEN2' +'<br>'+'<br>';
+
+
+
+
     for(i = 0; i < arr.length; i++) {
-        out += Math.min(parseInt(arr[i].PricingOptions[0].Price)) +',';
-        outEtl ='[' +out+'99'+']';
-        maxNumber += Math.max(outEtl) ;  
+        out += Math.min(parseInt(arr[i].PricingOptions[0].Price)) +','+'<br>';
+
     }
+
+  //  out+=Itineraries[0];
+
+    console.log(out);
+
+    maxNumber += Math.max(i);
 /*
     for(i = 0; i < arr.length; i++) {
         out += ' i='+ i + ';' +  arr[i].PricingOptions[0].Price   ;
     }
 */    
-    document.getElementById("id01").innerHTML = maxNumber;
+    document.getElementById("id01").innerHTML = out;
 }
 </script>
 
